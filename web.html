@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <style>
+    input, select { margin: 5px; }
+    table, th, td { border: 1px solid black; border-collapse: collapse; padding: 5px; }
+  </style>
+</head>
+<body>
+  <h2>Boleta de Cotización</h2>
+  
+  <h3>Datos del Cliente</h3>
+  <label>Nombre: <input type="text" id="clienteNombre"></label><br>
+  <label>Domicilio: <input type="text" id="clienteDireccion"></label><br>
+  <label>Teléfono: <input type="text" id="clienteTelefono"></label><br><br>
+  
+  <label>Producto:
+    <input list="listaProductos" id="producto" oninput="cargarPrecio()" placeholder="Escriba el nombre...">
+    <datalist id="listaProductos">
+      <option value="Auriculares HP">
+      <option value="Auriculares LENOVO">
+      <option value="Celular">
+      <option value="Laptop">
+      <option value="Monitor">
+      <option value="Mouse">
+      <option value="Pantalla">
+      <option value="Teclado">
+    </datalist>
+  </label><br>
+
+  <label>Cantidad: <input type="number" id="cantidad" value="1"></label><br>
+  <label>Precio (S/): <input type="number" id="precio" disabled></label><br>
+  <label>Descuento (%): <input type="number" id="descuento" value="0"></label><br>
+  <label>Impuesto (%): <input type="number" id="impuesto" value="18"></label><br>
+  <button onclick="agregarProducto()">Añadir producto</button>
+
+  <h3>Resumen de productos</h3>
+  <table id="tabla">
+    <tr>
+      <th>Producto</th><th>Cantidad</th><th>Precio</th><th>Descuento</th><th>Impuesto</th><th>Total</th><th>Eliminar</th>
+    </tr>
+  </table>
+
+  <br><button onclick="generarBoleta()">Generar Boleta PDF</button><br><br>
+
+  <div>
+    <label>Correo <input type="email" id="correoDestinatario" placeholder="ejemplo@correo.com"></label><br><br>
+    <br>
+    <button onclick="enviarPorCorreo()" style="display: flex; align-items: center; gap: 8px; padding: 5px 10px;">
+      <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico" alt="Gmail" width="20" height="20">
+      Enviar Boleta por Correo
+    </button>
+  </div>
